@@ -12,29 +12,55 @@ import java.util.Scanner;
  *
  * @author reroes
  */
+import java.util.ArrayList;
+import java.util.Scanner;
+import java.util.Locale;
+
 public class Ejecutor2 {
     public static void main(String[] args) {
-        // 1. Crear y presentar un obj de tipo Estudiante Presencial,
-        // con datos por teclado
         Scanner entrada = new Scanner(System.in);
         entrada.useLocale(Locale.US);
-        System.out.println("Ingrese nombre");
-        String n = entrada.nextLine();
-        System.out.println("Ingrese apellido");
-        String ap = entrada.nextLine();
-        System.out.println("Ingrese identificación");
-        String ced = entrada.nextLine();
-        System.out.println("Ingrese edad");
-        int edad = entrada.nextInt();
-        System.out.println("Ingrese número de créditos");
-        int creditos = entrada.nextInt();
-        System.out.println("Ingrese costo de créditos");
-        double costo = entrada.nextInt();
-        
-        EstudiantePresencial presencial = new EstudiantePresencial(n, ap, ced, 
-                edad, creditos, costo);
-        presencial.calcularMatriculaPresencial();
-        
-        System.out.printf("%s\n", presencial);
+
+        ArrayList<EstudiantePresencial> listaEstudiantes = new ArrayList<>();
+
+        boolean bandera = true;
+        while (bandera) {
+            System.out.println("Ingrese nombre");
+            String n = entrada.nextLine();
+            System.out.println("Ingrese apellido");
+            String ap = entrada.nextLine();
+            System.out.println("Ingrese identificación");
+            String ced = entrada.nextLine();
+            System.out.println("Ingrese edad");
+            int edad = entrada.nextInt();
+            System.out.println("Ingrese número de créditos");
+            int creditos = entrada.nextInt();
+            System.out.println("Ingrese costo de créditos");
+            double costo = entrada.nextDouble();
+
+            entrada.nextLine(); // Limpiar el buffer del scanner
+
+            EstudiantePresencial presencial = new EstudiantePresencial(n, ap, 
+                    ced, edad, creditos, costo);
+            presencial.calcularMatriculaPresencial();
+
+            listaEstudiantes.add(presencial);
+
+            System.out.println("¿Desea ingresar otro estudiante?");
+            System.out.println("1) Si");
+            System.out.println("2) No");
+            int respuesta = entrada.nextInt();
+            entrada.nextLine();
+            if (respuesta == 2) {
+                bandera = false;
+            }
+        }
+
+        System.out.println("Lista de Estudiantes:\n");
+        for (int i = 0; i < listaEstudiantes.size(); i++) {
+            EstudiantePresencial estudiante = listaEstudiantes.get(i);
+            System.out.println(estudiante);
+        }
     }
 }
+
