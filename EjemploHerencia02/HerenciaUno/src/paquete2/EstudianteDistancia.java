@@ -1,7 +1,9 @@
 package paquete2;
 
 public class EstudianteDistancia extends Estudiante{
-    
+//    Detecta este error ya que en la superclase estudiante existe un
+//    constructor y necesita recibir los parametros que coincidad con uno de
+//    los constructores de esta clase
     private int numeroAsignaturas;
     private double costoAsignatura;
     private double matriculaDistancia;
